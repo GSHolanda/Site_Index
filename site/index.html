@@ -32,7 +32,6 @@
   <script src="assets/js/medicao.js?v=1" defer></script>
   <script src="assets/js/site.js?v=1" defer></script>
   <script src="assets/js/formulario.js?v=1" defer></script>
-  <script src="assets/js/video-chamada.js?v=1" defer></script>
 
   <!-- MEDIÇÃO: quando a ferramenta for definida, cole aqui o código dela (ex.: Google Tag Manager) e ative em assets/js/config.js. -->
 
@@ -399,26 +398,12 @@
 
     <!-- Seções futuras (clientes, depoimentos, casos, indicadores): veja docs/secoes-futuras.md -->
 
-    <!-- ============ 6. Chamada para contato ============
-         A decolagem avança conforme o visitante rola a página (assets/js/video-chamada.js).
-         Celulares, tablets em pé e quem prefere movimento reduzido recebem uma imagem fixa. -->
-    <section class="chamada" id="chamada" aria-labelledby="chamada-titulo">
-      <div class="chamada__palco">
-        <div class="chamada__midia" aria-hidden="true">
-          <div class="chamada__poster"></div>
-          <video class="chamada__video" muted playsinline preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture></video>
-          <div class="chamada__estatico"></div>
-          <div class="chamada__veu"></div>
-        </div>
-        <div class="container chamada__conteudo">
-          <div class="chamada__caixa">
-            <h2 class="chamada__titulo" id="chamada-titulo" data-subida>Vamos conversar sobre o seu negócio?</h2>
-            <p class="chamada__texto">Conte à Index o que sua empresa busca e inicie uma conversa sobre estratégias, conexões e oportunidades.</p>
-            <div class="chamada__acao">
-              <a class="botao botao--primario botao--grande" href="#contato" data-cta="chamada-final">Conversar com a Index</a>
-            </div>
-          </div>
-        </div>
+    <!-- ============ 6. Chamada para contato ============ -->
+    <section class="chamada" aria-labelledby="chamada-titulo">
+      <div class="container chamada__caixa revelar">
+        <h2 class="chamada__titulo" id="chamada-titulo">Vamos conversar sobre o seu negócio?</h2>
+        <p class="chamada__texto">Conte à Index o que sua empresa busca e inicie uma conversa sobre estratégias, conexões e oportunidades.</p>
+        <a class="botao botao--primario botao--grande" href="#contato" data-cta="chamada-final">Conversar com a Index</a>
       </div>
     </section>
 

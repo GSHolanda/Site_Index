@@ -21,15 +21,11 @@ DirectoryIndex index.html
   ExpiresByType font/woff2 "access plus 1 year"
   ExpiresByType image/svg+xml "access plus 1 month"
   ExpiresByType image/jpeg "access plus 1 month"
-  ExpiresByType video/mp4 "access plus 1 month"
-  ExpiresByType video/webm "access plus 1 month"
 </IfModule>
 
 <IfModule mod_mime.c>
   AddType font/woff2 .woff2
   AddType image/svg+xml .svg
-  AddType video/mp4 .mp4
-  AddType video/webm .webm
 </IfModule>
 
 # Segurança básica

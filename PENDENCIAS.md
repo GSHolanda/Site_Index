@@ -53,9 +53,10 @@ O briefing pediu para não incluir números, resultados ou afirmações sem conf
 - a lista de países com conexões internacionais (Estados Unidos, China, Índia, Austrália, Espanha, Portugal, Argentina, Panamá);
 - o subtítulo "Consultoria e Assessoria" que acompanha o logotipo no site atual.
 
-## Vídeo da decolagem
+## Decisão registrada: vídeo do foguete
 
-O vídeo enviado foi usado na chamada final ("Vamos conversar sobre o seu negócio?"), com o símbolo da NASA e as bandeiras removidos digitalmente. Detalhes em [docs/video/LEIA-ME.md](docs/video/LEIA-ME.md).
+O vídeo enviado (animação de lançamento de foguete, usada hoje dentro das letras do logotipo) **não é usado** nesta versão.
 
-- [ ] **Confirmar a origem e a licença do vídeo.** A animação parece ser da missão Artemis I da NASA. Esse tipo de material costuma ser de uso livre, mas os símbolos da NASA não podem sugerir associação ou endosso (por isso foram removidos). Se o arquivo veio de um banco de vídeos, conferir a licença de uso comercial.
-- [ ] Guardar o arquivo original (29 MB) junto com os materiais da marca; ele não fica no repositório.
+- Foi testada uma versão com a decolagem ao fundo da chamada final ("Vamos conversar sobre o seu negócio?"), avançando com a rolagem e com o símbolo da NASA e as bandeiras removidos digitalmente. A Index avaliou e preferiu voltar à chamada sem vídeo.
+- Essa versão continua guardada no histórico do repositório, no commit `f1be164` ("Adiciona a decolagem do foguete na chamada final, sem as marcas da NASA"), com os scripts de remoção das marcas em `docs/video`. Se um dia quiserem reaproveitar, ela pode ser recuperada de lá.
+- No vídeo original, os trechos da nave, da Terra, da Lua e dos paraquedas (de 35 s até o fim) não mostram marcas e podem ser usados sem edição. A decolagem (8 a 15 s) só pode ser usada com as marcas removidas.
