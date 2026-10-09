@@ -53,12 +53,9 @@ O briefing pediu para não incluir números, resultados ou afirmações sem conf
 - a lista de países com conexões internacionais (Estados Unidos, China, Índia, Austrália, Espanha, Portugal, Argentina, Panamá);
 - o subtítulo "Consultoria e Assessoria" que acompanha o logotipo no site atual.
 
-## Decisão registrada: vídeo do foguete
+## Vídeo da decolagem
 
-O vídeo enviado (animação de lançamento de foguete, usada hoje dentro das letras do logotipo) **não foi usado** nesta versão:
+O vídeo enviado foi usado na chamada final ("Vamos conversar sobre o seu negócio?"), com o símbolo da NASA e as bandeiras removidos digitalmente. Detalhes em [docs/video/LEIA-ME.md](docs/video/LEIA-ME.md).
 
-- mostra o símbolo da NASA no foguete, o que pode sugerir uma associação que não existe e tem uso restrito;
-- o briefing pede animações leves e um elemento gráfico ligado a conexões empresariais;
-- é uma sequência longa com vários cortes (lançamento, órbita, Lua, pouso no mar), difícil de encaixar numa apresentação sóbria.
-
-Se a Index quiser usá-lo, o caminho mais seguro é um trecho curto, sem marcas visíveis, numa seção específica.
+- [ ] **Confirmar a origem e a licença do vídeo.** A animação parece ser da missão Artemis I da NASA. Esse tipo de material costuma ser de uso livre, mas os símbolos da NASA não podem sugerir associação ou endosso (por isso foram removidos). Se o arquivo veio de um banco de vídeos, conferir a licença de uso comercial.
+- [ ] Guardar o arquivo original (29 MB) junto com os materiais da marca; ele não fica no repositório.

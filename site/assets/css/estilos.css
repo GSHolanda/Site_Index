@@ -969,33 +969,116 @@ main:focus { outline: none; }
 .setores__nota { color: var(--tinta-2); }
 .setores__nota a { color: var(--azul-700); font-weight: 600; text-underline-offset: 0.25em; }
 
-/* 7.6 Chamada para contato */
+/* 7.6 Chamada para contato, com a decolagem ao fundo
+   O vídeo avança com a rolagem (assets/js/video-chamada.js). A variável --k (0 a 1)
+   comanda a entrada do texto; sem JavaScript ou na versão fixa ela vale 1. */
 .chamada {
+  position: relative;
+  background: var(--azul-950);
+  color: #fff;
+  --foco: var(--turquesa-300);
+  --tsombra: 0 1px 2px rgba(4, 10, 22, 0.9), 0 3px 12px rgba(4, 10, 22, 0.7), 0 10px 40px rgba(4, 10, 22, 0.75);
+}
+.chamada__palco {
   position: relative;
   overflow: hidden;
   overflow: clip;
-  padding-block: clamp(72px, 9vw, 112px);
-  background: var(--azul-700);
-  color: #fff;
-  --foco: var(--turquesa-300);
+  display: grid;
+  align-items: center;
+  height: min(56.25vw, 100vh);          /* proporção do vídeo (16:9), sem passar da altura da tela */
+  height: min(56.25vw, 100svh);
+  min-height: 520px;
 }
-/* Dois arcos finos de conexão ao fundo, bem discretos */
-.chamada::before,
-.chamada::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  border-radius: 50%;
-  border: 1px solid rgba(123, 224, 235, 0.16);
-  transform: translate(-50%, -38%);
-  pointer-events: none;
+.chamada__midia { position: absolute; inset: 0; }
+.chamada__poster,
+.chamada__estatico,
+.chamada__video,
+.chamada__veu { position: absolute; inset: 0; width: 100%; height: 100%; }
+.chamada__poster,
+.chamada__estatico { background-color: var(--azul-950); background-size: cover; background-position: 50% 50%; }
+.chamada__estatico { display: none; }
+.chamada__video {
+  object-fit: cover;
+  object-position: 50% 50%;
+  opacity: 0;
+  transform: translateZ(0);             /* camada própria: o vídeo não arrasta o resto da página */
+  will-change: transform;
+  transition: opacity 0.6s var(--curva-saida);
 }
-.chamada::before { width: 1300px; height: 1300px; }
-.chamada::after { width: 1560px; height: 1560px; border-color: rgba(123, 224, 235, 0.09); }
-.chamada__caixa { position: relative; display: grid; justify-items: center; text-align: center; }
-.chamada__titulo { font-size: clamp(2rem, 1.3rem + 2.6vw, 3.25rem); max-width: 18ch; }
-.chamada__texto { margin: 20px 0 36px; max-width: 50ch; font-size: 1.15rem; color: #D6E0EE; }
+.chamada.video-pronto .chamada__video { opacity: 1; }
+/* Véu de legibilidade: escurece só a coluna do texto, à esquerda, e deixa o foguete livre */
+.chamada__veu {
+  background:
+    radial-gradient(ellipse 58% 92% at 20% 52%, rgba(6, 14, 30, 0.74) 0%, rgba(6, 14, 30, 0.5) 46%, rgba(6, 14, 30, 0) 76%),
+    radial-gradient(ellipse 120% 95% at 50% 45%, rgba(6, 14, 30, 0) 40%, rgba(6, 14, 30, 0.55) 100%);
+}
+/* Em telas médias a coluna de texto ocupa mais da imagem: véu um pouco mais largo e mais escuro */
+@media (max-width: 1180px) {
+  .chamada__veu {
+    background:
+      radial-gradient(ellipse 66% 96% at 22% 52%, rgba(6, 14, 30, 0.8) 0%, rgba(6, 14, 30, 0.6) 50%, rgba(6, 14, 30, 0) 78%),
+      radial-gradient(ellipse 120% 95% at 50% 45%, rgba(6, 14, 30, 0) 40%, rgba(6, 14, 30, 0.55) 100%);
+  }
+}
+.chamada__conteudo { position: relative; z-index: 1; }
+.chamada__caixa { max-width: min(34rem, 40vw); display: grid; justify-items: start; text-align: left; }  /* a coluna termina antes do foguete, que fica no centro */
+.chamada__titulo {
+  font-size: clamp(2rem, 1.3rem + 2.6vw, 3.4rem);
+  line-height: 1.06;
+  max-width: 16ch;
+  text-shadow: var(--tsombra);
+}
+.chamada__texto { margin: 22px 0 34px; max-width: 42ch; font-size: 1.15rem; color: #E3EAF5; text-shadow: var(--tsombra); }
+.chamada .botao { text-shadow: none; }
+
+/* Entrada do texto ecoando a decolagem: as palavras sobem em ordem de leitura,
+   depois o texto e o botão. Tudo reversível ao rolar para cima. */
+.chamada__titulo .w {
+  display: inline-block;
+  --kc: clamp(0, (var(--k, 1) - var(--th, 0)) * 3.2, 1);
+  opacity: var(--kc);
+  transform: translateY(calc((1 - var(--kc)) * 0.6em));
+}
+.chamada__texto {
+  --ks: clamp(0, (var(--k, 1) - 0.5) * 4, 1);
+  opacity: var(--ks);
+  transform: translateY(calc((1 - var(--ks)) * 14px));
+}
+.chamada__acao {
+  --kb: clamp(0, (var(--k, 1) - 0.62) * 5, 1);
+  opacity: var(--kb);
+  transform: translateY(calc((1 - var(--kb)) * 14px));
+}
+/* Quem chega pelo teclado vê tudo na hora */
+.chamada__caixa:focus-within { --k: 1 !important; }
+
+/* Sem JavaScript, ou se o vídeo falhar: imagem fixa do foguete subindo */
+.no-js .chamada__estatico,
+.chamada.video-falhou .chamada__estatico { display: block; background-image: url("../img/decolagem-fim.jpg"); }
+.no-js .chamada__poster,
+.no-js .chamada__video,
+.chamada.video-falhou .chamada__video { display: none; }
+
+/* Os cinco portões da versão fixa (idênticos aos de video-chamada.js):
+   celulares, tablets em pé, telas de toque em pé, celulares deitados e movimento reduzido.
+   Nesses casos o vídeo não é baixado e entra a imagem fixa. */
+@media (max-width: 720px), (orientation: portrait) and (max-width: 1024px), (orientation: portrait) and (pointer: coarse), (orientation: landscape) and (pointer: coarse) and (max-height: 560px), (prefers-reduced-motion: reduce) {
+  .chamada__poster,
+  .chamada__video { display: none; }
+  .chamada__estatico { display: block; }
+  .chamada.perto .chamada__estatico { background-image: url("../img/decolagem-fim.jpg"); }  /* só baixa perto da seção */
+  .chamada { --k: 1 !important; }
+}
+
+/* Telas estreitas ou em pé: imagem em cima, texto embaixo (o texto não cobre o foguete) */
+@media (max-width: 720px), (orientation: portrait) and (max-width: 1024px), (orientation: landscape) and (pointer: coarse) and (max-height: 560px) {
+  .chamada__palco { display: block; height: auto; min-height: 0; }
+  .chamada__midia { position: relative; aspect-ratio: 16 / 11; max-height: 70vh; width: 100%; }
+  .chamada__veu { background: linear-gradient(180deg, rgba(10, 23, 48, 0) 55%, var(--azul-950) 100%); }
+  .chamada__conteudo { padding-block: 4px clamp(64px, 12vw, 96px); }
+  .chamada__caixa { max-width: none; }
+  .chamada__titulo, .chamada__texto { text-shadow: none; }
+}
 
 /* 7.7 Contato */
 .contato {

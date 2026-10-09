@@ -21,12 +21,15 @@ site/                       ← tudo o que vai para a hospedagem (public_html)
     ├── js/medicao.js       ← pontos de medição (cliques e envios)
     ├── js/site.js          ← menu, animações, setores, canais, WhatsApp
     ├── js/formulario.js    ← validação e envio do formulário
+    ├── js/video-chamada.js ← decolagem que acompanha a rolagem na chamada final
     ├── fonts/              ← fontes hospedadas no próprio site (+ licenças)
-    └── img/                ← favicon e imagem de compartilhamento
+    ├── video/              ← decolagem em MP4 e WebM
+    └── img/                ← favicon, imagem de compartilhamento e imagens fixas da decolagem
 
 docs/
 ├── marca/                  ← logotipo original enviado + versões vetoriais
 ├── og-imagem.html          ← modelo da imagem de compartilhamento
+├── video/                  ← como o vídeo foi preparado e scripts que removeram as marcas
 └── secoes-futuras.md       ← modelos prontos para clientes, depoimentos, casos e indicadores
 ```
 
@@ -125,6 +128,14 @@ Os nomes dos eventos podem ser trocados em `medicao.eventos`. Mesmo desligada, a
 
 O botão flutuante só aparece quando houver um número em `config.js` (`contato.whatsapp`, somente números com DDI e DDD, por exemplo `5511900000000`). Ele surge depois que o visitante passa da primeira tela e se recolhe quando o formulário está visível, para não atrapalhar o preenchimento.
 
+## Vídeo da chamada final
+
+A seção "Vamos conversar sobre o seu negócio?" tem ao fundo a decolagem do foguete, que avança conforme o visitante rola a página. O símbolo da NASA e as bandeiras foram removidos digitalmente do trecho usado. Detalhes, comandos e scripts em [docs/video/LEIA-ME.md](docs/video/LEIA-ME.md).
+
+- O vídeo (2,6 MB em MP4, 1,6 MB em WebM) só é baixado quando o visitante se aproxima da seção, e não pesa na abertura do site.
+- Celulares, tablets em pé e quem prefere movimento reduzido veem uma imagem fixa da decolagem.
+- Para trocar o vídeo, substitua `decolagem.mp4` e `decolagem.webm` mantendo os parâmetros de codificação descritos no LEIA-ME (um quadro-chave a cada 8 quadros, sem áudio), refaça as duas imagens fixas e aumente o `?v=` do vídeo em `video-chamada.js`.
+
 ## Logotipo e identidade visual
 
 - O logotipo usado no site foi **vetorizado a partir do arquivo oficial enviado** (`docs/marca/logo-index-original.png`). A versão vetorial reproduz o original com 99,87% de sobreposição, pixel a pixel, e fica nítida em qualquer tamanho. Ela está no sprite do `index.html` (`<symbol id="logo-index">`) e em `docs/marca/` nas versões branca e azul.
@@ -154,4 +165,4 @@ Verificado com navegador automatizado (Chromium) em 320, 375, 390, 768, 1024, 12
 - Sem rolagem horizontal, botões com pelo menos 44 px de altura no celular.
 - Movimento reduzido respeitado, inclusive quando a preferência muda com a página aberta.
 - Página completa mesmo com o JavaScript desligado.
-- Lighthouse no servidor local: celular com desempenho 96 e acessibilidade, boas práticas e SEO 100; computador com 100 nas quatro categorias. Página inteira com cerca de 212 KB e nenhum deslocamento de layout durante o carregamento.
+- Lighthouse no servidor local: celular com desempenho 98 e acessibilidade, boas práticas e SEO 100; computador com 100 nas quatro categorias. Abertura da página com cerca de 225 KB (o vídeo só carrega perto da seção) e nenhum deslocamento de layout durante o carregamento.
