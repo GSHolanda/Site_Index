@@ -1265,7 +1265,12 @@ textarea.campo__controle { min-height: 148px; resize: vertical; }
 .js .revelar-grupo > * {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 0.75s var(--curva-saida), transform 0.75s var(--curva-saida);
+  transition:
+    opacity 0.75s var(--curva-saida),
+    transform 0.75s var(--curva-saida),
+    box-shadow var(--tempo-medio) var(--curva-saida),
+    border-color var(--tempo-medio) var(--curva-saida),
+    background-color var(--tempo-medio) var(--curva-saida);
 }
 .js .revelar.in,
 .js .revelar-grupo.in > * { opacity: 1; transform: none; }
@@ -1275,7 +1280,6 @@ textarea.campo__controle { min-height: 148px; resize: vertical; }
 /* Depois da entrada, os atrasos são aposentados para o hover responder na hora */
 .js .revelar-grupo.assentado > *,
 .js .revelar-grupo.assentado > *:nth-child(n) { transition-delay: 0s; }
-.js .revelar-grupo.assentado > .frente { transition: box-shadow var(--tempo-medio) var(--curva-saida), border-color var(--tempo-medio) var(--curva-saida); }
 
 /* Linhas do "X" em Como a Index atua crescem quando a seção aparece */
 @media (min-width: 760px) {
