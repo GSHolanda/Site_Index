@@ -1270,6 +1270,8 @@ textarea.campo__controle { min-height: 148px; resize: vertical; }
 .js .revelar.in,
 .js .revelar-grupo.in > * { opacity: 1; transform: none; }
 .js .revelar-grupo.in > * { transition-delay: calc(var(--i, 0) * 90ms); }
+.js .sem-transicao,
+.js .sem-transicao > * { transition: none !important; }
 /* Depois da entrada, os atrasos são aposentados para o hover responder na hora */
 .js .revelar-grupo.assentado > *,
 .js .revelar-grupo.assentado > *:nth-child(n) { transition-delay: 0s; }

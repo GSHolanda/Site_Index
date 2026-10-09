@@ -60,7 +60,7 @@
     email: 'E-mail',
     telefone: 'Telefone ou WhatsApp',
     objetivo: 'Objetivo do contato',
-    mensagem: 'Como podemos ajudar?'
+    mensagem: 'Como podemos ajudar'
   };
 
   function controle(nome) { return form.elements[nome]; }
@@ -249,7 +249,11 @@
   function mostrarSucesso() {
     form.hidden = true;
     sucesso.hidden = false;
-    sucesso.focus();
+    /* O formulário some e a página encolhe: leva a mensagem inteira para a tela */
+    var painel = sucesso.closest('.contato__painel') || sucesso;
+    var reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    painel.scrollIntoView({ block: 'start', behavior: reduzido ? 'auto' : 'smooth' });
+    sucesso.focus({ preventScroll: true });
   }
 
   form.addEventListener('submit', function (e) {

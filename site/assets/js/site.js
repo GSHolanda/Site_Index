@@ -141,6 +141,16 @@
   movimentoReduzido.addEventListener('change', function (e) {
     if (e.matches) elementosRevelar.forEach(revelar);
   });
+  /* Quem navega pelo teclado nunca encontra um elemento focado ainda invisível */
+  document.addEventListener('focusin', function (e) {
+    var alvo = e.target.closest && e.target.closest('.revelar, .revelar-grupo');
+    if (!alvo || alvo.classList.contains('in')) return;
+    alvo.classList.add('sem-transicao');            // aparece na hora, sem animação
+    revelar(alvo);
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(function () { alvo.classList.remove('sem-transicao'); });
+    });
+  });
 
   /* ---------- Rede de conexões da primeira tela ---------- */
   var rede = $('.rede');
