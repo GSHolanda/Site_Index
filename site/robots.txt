@@ -1,0 +1,5 @@
+# DEPLOY STEP: confirme o domínio definitivo na linha Sitemap antes de publicar.
+User-agent: *
+Allow: /
+
+Sitemap: https://indexparticipacoes.com.br/sitemap.xml
